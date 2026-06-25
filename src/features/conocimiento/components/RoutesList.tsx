@@ -4,7 +4,7 @@ import { useTransition } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { deleteRoute } from '../services/admin-actions'
-import { RAMA_LABELS } from '../types'
+import { RAMA_LABELS, PROCESO_LABELS } from '../types'
 import type { Route } from '../types'
 
 export function RoutesList({ routes }: { routes: Route[] }) {
@@ -33,7 +33,14 @@ export function RoutesList({ routes }: { routes: Route[] }) {
       {routes.map((r) => (
         <li key={r.id} className="flex items-center justify-between gap-3 rounded-md border border-gray-200 bg-white px-4 py-3">
           <Link href={`/admin/conocimiento/rutas/${r.id}`} className="min-w-0">
-            <div className="truncate text-sm font-medium text-gray-900 hover:text-blue-600">{r.nombre}</div>
+            <div className="flex items-center gap-2">
+              <span className={`rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
+                r.proceso === 'verificacion_portafolio' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'
+              }`}>
+                {PROCESO_LABELS[r.proceso]}
+              </span>
+              <span className="truncate text-sm font-medium text-gray-900 hover:text-blue-600">{r.nombre}</span>
+            </div>
             <div className="text-xs text-gray-400">
               {RAMA_LABELS[r.rama]} · {r.canal === 'whatsapp' ? 'WhatsApp' : 'Instagram'}
               {r.pais ? ` · ${r.pais}` : ''}

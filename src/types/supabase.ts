@@ -307,6 +307,7 @@ export type Database = {
           id: string
           nombre: string
           pais: string | null
+          proceso: Database["public"]["Enums"]["proceso_meta"]
           rama: Database["public"]["Enums"]["rama"]
         }
         Insert: {
@@ -316,6 +317,7 @@ export type Database = {
           id?: string
           nombre: string
           pais?: string | null
+          proceso?: Database["public"]["Enums"]["proceso_meta"]
           rama: Database["public"]["Enums"]["rama"]
         }
         Update: {
@@ -325,6 +327,7 @@ export type Database = {
           id?: string
           nombre?: string
           pais?: string | null
+          proceso?: Database["public"]["Enums"]["proceso_meta"]
           rama?: Database["public"]["Enums"]["rama"]
         }
         Relationships: []
@@ -340,6 +343,7 @@ export type Database = {
       canal: "whatsapp" | "instagram"
       estado_editorial: "borrador" | "propuesto" | "aprobado"
       progress_estado: "pendiente" | "hecho" | "desvio"
+      proceso_meta: "activacion_numero" | "verificacion_portafolio"
       project_estado:
         | "diagnostico"
         | "en_ruta"
@@ -363,6 +367,7 @@ export const Constants = {
       canal: ["whatsapp", "instagram"],
       estado_editorial: ["borrador", "propuesto", "aprobado"],
       progress_estado: ["pendiente", "hecho", "desvio"],
+      proceso_meta: ["activacion_numero", "verificacion_portafolio"],
       project_estado: [
         "diagnostico",
         "en_ruta",

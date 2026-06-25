@@ -124,6 +124,7 @@ export async function deleteStep(id: string): Promise<ActionResult> {
 
 const routeSchema = z.object({
   nombre: z.string().trim().min(1, 'El nombre es obligatorio').max(120),
+  proceso: z.enum(['activacion_numero', 'verificacion_portafolio']),
   rama: z.enum(['estandar', 'rehabilitacion', 'verif_alternativa', 'por_bsp']),
   canal: z.enum(['whatsapp', 'instagram']),
   bsp: z.string().trim().max(80).optional().or(z.literal('')),
@@ -159,6 +160,7 @@ export async function createRoute(formData: FormData): Promise<ActionResult<{ id
   await requireEditor()
   const parsed = routeSchema.safeParse({
     nombre: formData.get('nombre'),
+    proceso: formData.get('proceso'),
     rama: formData.get('rama'),
     canal: formData.get('canal'),
     bsp: formData.get('bsp'),
@@ -169,7 +171,7 @@ export async function createRoute(formData: FormData): Promise<ActionResult<{ id
   const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('routes')
-    .insert({ nombre: v.nombre, rama: v.rama, canal: v.canal, bsp: v.bsp || null, pais: v.pais || null })
+    .insert({ nombre: v.nombre, proceso: v.proceso, rama: v.rama, canal: v.canal, bsp: v.bsp || null, pais: v.pais || null })
     .select('id')
     .single()
   if (error) return { error: error.message }

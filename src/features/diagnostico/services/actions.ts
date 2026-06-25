@@ -40,11 +40,13 @@ export async function saveDiagnostico(projectId: string, formData: FormData): Pr
     .maybeSingle()
   if (!project) return { error: 'Proyecto no encontrado' }
 
-  // Buscar la mejor ruta del canal, priorizando país y rama (ver pickRoute).
+  // El diagnóstico es del proceso de ACTIVACIÓN del número (core de Faro), no de
+  // la verificación del portafolio (otro trámite). Filtramos por proceso.
   const { data: routes } = await supabase
     .from('routes')
     .select('id, rama, pais')
     .eq('canal', project.canal)
+    .eq('proceso', 'activacion_numero')
 
   const routeId = pickRoute(routes ?? [], rama, project.pais)
 

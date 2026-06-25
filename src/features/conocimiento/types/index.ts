@@ -7,6 +7,17 @@ export type RescuePlaybook = Database['public']['Tables']['rescue_playbooks']['R
 
 export type Canal = Database['public']['Enums']['canal']
 export type Rama = Database['public']['Enums']['rama']
+export type Proceso = Database['public']['Enums']['proceso_meta']
+
+export const PROCESOS: { value: Proceso; label: string }[] = [
+  { value: 'activacion_numero', label: 'Activación del número' },
+  { value: 'verificacion_portafolio', label: 'Verificación del portafolio' },
+]
+
+export const PROCESO_LABELS: Record<Proceso, string> = {
+  activacion_numero: 'Activación del número',
+  verificacion_portafolio: 'Verificación del portafolio',
+}
 export type EstadoEditorial = Database['public']['Enums']['estado_editorial']
 export type TipoRestriccion = Database['public']['Enums']['tipo_restriccion']
 

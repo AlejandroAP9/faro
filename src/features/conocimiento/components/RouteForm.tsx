@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createRoute } from '../services/admin-actions'
-import { RAMAS } from '../types'
+import { RAMAS, PROCESOS } from '../types'
 
 const input =
   'mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500'
@@ -34,6 +34,13 @@ export function RouteForm() {
       <div>
         <label htmlFor="nombre" className={labelC}>Nombre <span className="text-red-500">*</span></label>
         <input id="nombre" name="nombre" required placeholder="WhatsApp · cuenta nueva · estándar" className={input} />
+      </div>
+      <div>
+        <label htmlFor="proceso" className={labelC}>Proceso de Meta <span className="text-red-500">*</span></label>
+        <select id="proceso" name="proceso" defaultValue="activacion_numero" className={input}>
+          {PROCESOS.map((p) => <option key={p.value} value={p.value}>{p.label}</option>)}
+        </select>
+        <p className="mt-1 text-xs text-gray-400">Activar el número (core) vs verificar el portafolio (otro trámite).</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>

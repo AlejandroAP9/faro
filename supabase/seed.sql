@@ -178,8 +178,8 @@ with ins_steps as (
   returning id, slug
 ),
 ins_route as (
-  insert into public.routes (nombre, rama, canal, pais)
-  values ('WhatsApp · verificación de negocio sin registro formal · Chile', 'verif_alternativa', 'whatsapp', 'Chile')
+  insert into public.routes (nombre, rama, canal, pais, proceso)
+  values ('WhatsApp · verificación de negocio sin registro formal · Chile', 'verif_alternativa', 'whatsapp', 'Chile', 'verificacion_portafolio')
   returning id
 )
 insert into public.route_steps (route_id, step_id, orden)
