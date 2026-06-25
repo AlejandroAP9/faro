@@ -30,6 +30,16 @@ No es otro constructor de bots: es un **wizard de activación + blindaje + modo 
 - **Modo rescate** con playbook por tipo de restricción.
 - **Reportes** ("esto cambió") que alimentan la curaduría (red colectiva).
 
+## Preguntas frecuentes
+
+**¿Faro usa IA?** No. Los pasos los escribe un humano y se guardan en la base de datos; Faro solo los muestra. El diagnóstico es una función determinista, no un LLM.
+
+**¿Necesito una API key de un modelo (OpenAI/OpenRouter)?** No. Faro no usa IA en tiempo de ejecución. Solo necesita tu propio Supabase (plan gratis).
+
+**¿Se conecta a Meta o me pide mi login de Meta?** No, nunca. Faro es una guía: te dice qué hacer y tú lo haces a mano en tu navegador. Inicias sesión en Faro (para tus proyectos), no en Meta. Faro jamás ve tus credenciales de Meta.
+
+> Más detalle y el FAQ completo en [docs/COMO-FUNCIONA.md](docs/COMO-FUNCIONA.md).
+
 ---
 
 ## Deploy

@@ -93,3 +93,34 @@ Editor  ──escribe──>  Pasos  ──se ensamblan en──>  Rutas (proces
                                           │
                                     "esto cambió" ──> contador ──> curaduría (vuelve al editor)
 ```
+
+## Preguntas frecuentes (FAQ)
+
+**¿Faro usa IA para generar los pasos o el diagnóstico?**
+No. Cero IA en el producto. Los Pasos los escribe un humano (el editor) y se guardan en la
+base de datos; Faro solo los **muestra** en orden, no los genera. El diagnóstico (semáforo +
+ruta) lo calcula una **función de TypeScript puro**: mismas respuestas, mismo resultado, siempre.
+
+**¿Necesito una API key de OpenAI/OpenRouter o de algún modelo?**
+No. Faro no usa ningún LLM en tiempo de ejecución. Lo único que necesita para correr es un
+proyecto de Supabase (el plan gratis alcanza de sobra).
+
+**¿Faro se conecta a la API de Meta?**
+No, nunca. Faro no toca Meta. Es una **guía**: te dice qué hacer y tú lo haces a mano en tu
+navegador. Es deliberado: automatizar acciones dentro de Meta reproduce justo el comportamiento
+robótico que dispara los bloqueos.
+
+**¿Tengo que darle a Faro mi usuario y clave de Meta?**
+No, jamás. Hay **dos sesiones distintas que no se mezclan**: inicias sesión en **Faro** (tu cuenta
+de Faro, para tener tus proyectos) y, por separado, inicias sesión en **Meta**
+(business.facebook.com, en tu propio navegador) para hacer la activación. Faro nunca te pide ni ve
+tus credenciales de Meta.
+
+**Entonces, ¿qué hace exactamente Faro?**
+Te muestra la ruta paso a paso con la trampa de cada paso, lleva tu progreso, y te da el playbook
+de rescate si te bloquean. El "motor" es el **conocimiento curado**, no una automatización. Faro
+guía, tú ejecutas.
+
+**¿De dónde sale el conocimiento?**
+Lo cura un editor humano (la fuente de verdad) y la **red de usuarios** lo mantiene vivo: cuando
+alguien marca "esto cambió", ese Paso sube en la cola de curaduría del editor.
