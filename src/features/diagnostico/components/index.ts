@@ -1,0 +1,1 @@
+export { DiagnosticoForm } from './DiagnosticoForm'
