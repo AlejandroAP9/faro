@@ -1,4 +1,4 @@
-# Faro
+# 💡 Faro
 
 > Hecho con **Raíz** 🌱 — template Agent-First para SaaS (Next.js 16 + Supabase).
 

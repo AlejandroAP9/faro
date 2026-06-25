@@ -18,7 +18,7 @@ export default async function MainLayout({
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-6">
             <Link href="/dashboard" className="flex items-center gap-2 font-semibold text-gray-900">
-              <span className="inline-block h-5 w-5 rounded bg-blue-600" aria-hidden />
+              <span className="text-lg leading-none" aria-hidden>💡</span>
               Faro
             </Link>
             {editor && (
