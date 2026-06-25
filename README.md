@@ -1,12 +1,12 @@
-# Pista
+# Faro
 
-> Hecho con [Raíz](https://github.com/) 🌱 — template Agent-First para SaaS (Next.js 16 + Supabase).
+> Hecho con **Raíz** 🌱 — template Agent-First para SaaS (Next.js 16 + Supabase).
 
 Onboarding guiado para activar cuentas de WhatsApp / Instagram Business **sin bloqueos de Meta**, pensado para implementadores de agentes conversacionales.
 
 No es otro constructor de bots: es un **wizard de activación + blindaje + modo rescate**. Convierte un proceso opaco e irreproducible en uno confiable. Diagnostica el riesgo de la cuenta, genera una ruta paso a paso (con la trampa de cada paso visible), y si Meta bloquea, ofrece un playbook de rescate en vez de abandonarte.
 
-![Pista — el wizard de activación muestra cada paso con su trampa y el comportamiento que dispara bloqueos](public/pista-wizard.png)
+![Faro — el wizard de activación muestra cada paso con su trampa y el comportamiento que dispara bloqueos](public/faro-wizard.png)
 
 ## Stack
 
@@ -52,9 +52,9 @@ Copia `.env.example` a `.env.local` y rellena (Supabase → Project Settings →
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Anon/publishable key |
 | `SUPABASE_SERVICE_ROLE_KEY` | **Secreta**, server-only. Solo el backend editorial la usa |
 | `NEXT_PUBLIC_SITE_URL` | URL pública del sitio |
-| `PISTA_EDITOR_EMAILS` | Emails (coma-separado) que pueden editar el conocimiento en `/admin` |
+| `FARO_EDITOR_EMAILS` | Emails (coma-separado) que pueden editar el conocimiento en `/admin` |
 
-> `SUPABASE_SERVICE_ROLE_KEY` nunca se expone al cliente. Solo emails en `PISTA_EDITOR_EMAILS` acceden a `/admin/conocimiento` (allowlist fail-closed).
+> `SUPABASE_SERVICE_ROLE_KEY` nunca se expone al cliente. Solo emails en `FARO_EDITOR_EMAILS` acceden a `/admin/conocimiento` (allowlist fail-closed).
 
 ### 3. Local
 

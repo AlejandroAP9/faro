@@ -31,5 +31,5 @@ test('capture: wizard hero', async ({ page }) => {
 
   await page.getByText('Resultado del diagnóstico').waitFor({ timeout: 15_000 })
   await page.getByText('⚠ La trampa:').first().waitFor({ timeout: 10_000 })
-  await page.screenshot({ path: path.join('public', 'pista-wizard.png'), fullPage: true })
+  await page.screenshot({ path: path.join('public', 'faro-wizard.png'), fullPage: true })
 })

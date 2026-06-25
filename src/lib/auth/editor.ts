@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 function editorEmails(): string[] {
-  return (process.env.PISTA_EDITOR_EMAILS ?? '')
+  return (process.env.FARO_EDITOR_EMAILS ?? '')
     .split(',')
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean)
@@ -17,7 +17,7 @@ export function isEditorEmail(email: string | null | undefined): boolean {
 /**
  * Verifica que el usuario logueado sea editor. Si no hay sesion → /login.
  * Si hay sesion pero no es editor → /dashboard. Devuelve el user.
- * Fail-closed: sin PISTA_EDITOR_EMAILS configurado, nadie es editor.
+ * Fail-closed: sin FARO_EDITOR_EMAILS configurado, nadie es editor.
  */
 export async function requireEditor() {
   const supabase = await createClient()

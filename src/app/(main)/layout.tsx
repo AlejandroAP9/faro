@@ -19,7 +19,7 @@ export default async function MainLayout({
           <div className="flex items-center gap-6">
             <Link href="/dashboard" className="flex items-center gap-2 font-semibold text-gray-900">
               <span className="inline-block h-5 w-5 rounded bg-blue-600" aria-hidden />
-              Pista
+              Faro
             </Link>
             {editor && (
               <Link href="/admin/conocimiento" className="text-sm text-gray-500 hover:text-gray-900">
