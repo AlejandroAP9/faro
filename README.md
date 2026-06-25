@@ -1,4 +1,6 @@
-# 💡 Faro
+# Faro
+
+![Faro — un faro que guía a través del laberinto de Meta hasta producción](public/faro-hero.png)
 
 > Hecho con **Raíz** 🌱 — template Agent-First para SaaS (Next.js 16 + Supabase).
 

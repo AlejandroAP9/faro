@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { signout } from '@/actions/auth'
 import { createClient } from '@/lib/supabase/server'
 import { isEditorEmail } from '@/lib/auth/editor'
@@ -18,7 +19,7 @@ export default async function MainLayout({
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-6">
             <Link href="/dashboard" className="flex items-center gap-2 font-semibold text-gray-900">
-              <span className="text-lg leading-none" aria-hidden>💡</span>
+              <Image src="/faro-icon.png" alt="Faro" width={28} height={28} className="rounded-md" priority />
               Faro
             </Link>
             {editor && (
