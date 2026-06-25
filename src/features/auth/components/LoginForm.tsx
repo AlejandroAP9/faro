@@ -36,7 +36,7 @@ export function LoginForm() {
       <form action={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium">
-            Email
+            Correo electrónico
           </label>
           <input
             id="email"
@@ -49,7 +49,7 @@ export function LoginForm() {
 
         <div>
           <label htmlFor="password" className="block text-sm font-medium">
-            Password
+            Contraseña
           </label>
           <input
             id="password"
@@ -69,12 +69,12 @@ export function LoginForm() {
           disabled={loading}
           className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
         >
-          {loading ? 'Signing in...' : 'Sign In'}
+          {loading ? 'Ingresando...' : 'Iniciar sesión'}
         </button>
 
         <p className="text-center text-sm text-gray-600">
           <Link href="/forgot-password" className="text-blue-600 hover:underline">
-            Forgot password?
+            ¿Olvidaste tu contraseña?
           </Link>
         </p>
       </form>

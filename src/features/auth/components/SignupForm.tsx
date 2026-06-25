@@ -30,7 +30,7 @@ export function SignupForm() {
       <form action={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium">
-            Email
+            Correo electrónico
           </label>
           <input
             id="email"
@@ -43,7 +43,7 @@ export function SignupForm() {
 
         <div>
           <label htmlFor="password" className="block text-sm font-medium">
-            Password
+            Contraseña
           </label>
           <input
             id="password"
@@ -64,7 +64,7 @@ export function SignupForm() {
           disabled={loading}
           className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
         >
-          {loading ? 'Creating account...' : 'Create Account'}
+          {loading ? 'Creando cuenta...' : 'Crear cuenta'}
         </button>
       </form>
     </div>

@@ -6,16 +6,16 @@ export default function SignupPage() {
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-md space-y-8 p-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Create account</h1>
-          <p className="mt-2 text-gray-600">Get started for free</p>
+          <h1 className="text-3xl font-bold">Crear cuenta</h1>
+          <p className="mt-2 text-gray-600">Empieza gratis</p>
         </div>
 
         <SignupForm />
 
         <p className="text-center text-sm text-gray-600">
-          Already have an account?{' '}
+          ¿Ya tienes cuenta?{' '}
           <Link href="/login" className="text-blue-600 hover:underline">
-            Sign in
+            Inicia sesión
           </Link>
         </p>
       </div>

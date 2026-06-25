@@ -7,8 +7,8 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-md space-y-8 p-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Welcome back</h1>
-          <p className="mt-2 text-gray-600">Sign in to your account</p>
+          <h1 className="text-3xl font-bold">Bienvenido de vuelta</h1>
+          <p className="mt-2 text-gray-600">Inicia sesión en tu cuenta</p>
         </div>
 
         <Suspense fallback={null}>
@@ -16,9 +16,9 @@ export default function LoginPage() {
         </Suspense>
 
         <p className="text-center text-sm text-gray-600">
-          Don&apos;t have an account?{' '}
+          ¿No tienes cuenta?{' '}
           <Link href="/signup" className="text-blue-600 hover:underline">
-            Sign up
+            Regístrate
           </Link>
         </p>
       </div>

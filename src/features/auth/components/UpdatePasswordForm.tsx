@@ -23,7 +23,7 @@ export function UpdatePasswordForm() {
     <form action={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="password" className="block text-sm font-medium">
-          New Password
+          Nueva contraseña
         </label>
         <input
           id="password"
@@ -44,7 +44,7 @@ export function UpdatePasswordForm() {
         disabled={loading}
         className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
       >
-        {loading ? 'Updating...' : 'Update Password'}
+        {loading ? 'Actualizando...' : 'Actualizar contraseña'}
       </button>
     </form>
   )
