@@ -44,6 +44,8 @@ No es otro constructor de bots: es un **wizard de activación + blindaje + modo 
 
 ## Deploy
 
+> 🚀 **¿Prefieres una guía simple paso a paso?** Mira **[instalar.md](instalar.md)** (clonar, Supabase, correr, en 10-15 min). Abajo está la versión resumida.
+
 ### 1. Crea tu proyecto Supabase
 
 1. Crea un proyecto en [supabase.com](https://supabase.com).
