@@ -6,6 +6,10 @@ No necesitas saber de bases de datos: solo copiar, pegar y rellenar.
 > ¿Qué es Faro y cómo funciona? Lee [docs/COMO-FUNCIONA.md](docs/COMO-FUNCIONA.md).
 > Resumen: no usa IA, no se conecta a Meta, es una guía que tú ejecutas a mano.
 
+> ⚡ **Atajo:** después de clonar, corre **`bash instalar.sh`** y el script automatiza los
+> pasos 1 a 4 (requisitos, dependencias, `.env.local`) y te guía en el resto. Si prefieres
+> hacerlo a mano, sigue esta guía.
+
 ## Lo que vas a necesitar
 
 - **Node.js 20 o superior** (comprueba con `node -v`). Descárgalo en https://nodejs.org
