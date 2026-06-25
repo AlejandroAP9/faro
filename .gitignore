@@ -71,7 +71,7 @@ supabase/.temp
 
 # Repo "solo app deployable": excluir scaffolding Raíz y docs de negocio
 /BUSINESS_LOGIC.md
-/docs/
+/docs/plan/
 /.claude/
 /.raiz/
 /tools/

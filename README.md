@@ -10,6 +10,9 @@ No es otro constructor de bots: es un **wizard de activación + blindaje + modo 
 
 ![Faro — el wizard de activación muestra cada paso con su trampa y el comportamiento que dispara bloqueos](public/faro-wizard.png)
 
+> 📖 **¿Cómo funciona?** Faro es complejo de captar de entrada. Lee la guía conceptual:
+> **[docs/COMO-FUNCIONA.md](docs/COMO-FUNCIONA.md)**.
+
 ## Stack
 
 - **Next.js 16** (App Router) + React 19 + TypeScript
