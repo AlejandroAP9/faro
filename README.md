@@ -1,8 +1,12 @@
 # Pista
 
+> Hecho con [Raíz](https://github.com/) 🌱 — template Agent-First para SaaS (Next.js 16 + Supabase).
+
 Onboarding guiado para activar cuentas de WhatsApp / Instagram Business **sin bloqueos de Meta**, pensado para implementadores de agentes conversacionales.
 
 No es otro constructor de bots: es un **wizard de activación + blindaje + modo rescate**. Convierte un proceso opaco e irreproducible en uno confiable. Diagnostica el riesgo de la cuenta, genera una ruta paso a paso (con la trampa de cada paso visible), y si Meta bloquea, ofrece un playbook de rescate en vez de abandonarte.
+
+![Pista — el wizard de activación muestra cada paso con su trampa y el comportamiento que dispara bloqueos](public/pista-wizard.png)
 
 ## Stack
 
@@ -86,6 +90,10 @@ supabase/migrations/     # esquema (aplícalo en tu proyecto)
 supabase/seed.sql        # contenido de ejemplo (ilustrativo)
 e2e/                     # tests Playwright
 ```
+
+## Hecho con Raíz
+
+Este proyecto se construyó con **Raíz**, un template Agent-First (Next.js 16 + Supabase + RLS): de la entrevista de negocio al plan, y del plan al código fase por fase, con QA E2E y auditoría de seguridad.
 
 ## Licencia
 
