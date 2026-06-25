@@ -35,32 +35,18 @@ export async function saveDiagnostico(projectId: string, formData: FormData): Pr
   // El proyecto define el canal; verificamos ownership vía RLS (select propio).
   const { data: project } = await supabase
     .from('projects')
-    .select('id, canal')
+    .select('id, canal, pais')
     .eq('id', projectId)
     .maybeSingle()
   if (!project) return { error: 'Proyecto no encontrado' }
 
-  // Buscar una ruta para (rama, canal). Si no hay, caer a la estándar del canal.
-  let routeId: string | null = null
-  const { data: exact } = await supabase
+  // Buscar la mejor ruta del canal, priorizando país y rama (ver pickRoute).
+  const { data: routes } = await supabase
     .from('routes')
-    .select('id')
+    .select('id, rama, pais')
     .eq('canal', project.canal)
-    .eq('rama', rama)
-    .limit(1)
-    .maybeSingle()
-  if (exact) {
-    routeId = exact.id
-  } else {
-    const { data: fallback } = await supabase
-      .from('routes')
-      .select('id')
-      .eq('canal', project.canal)
-      .eq('rama', 'estandar')
-      .limit(1)
-      .maybeSingle()
-    routeId = fallback?.id ?? null
-  }
+
+  const routeId = pickRoute(routes ?? [], rama, project.pais)
 
   const { error } = await supabase
     .from('projects')
@@ -77,4 +63,27 @@ export async function saveDiagnostico(projectId: string, formData: FormData): Pr
 
   revalidatePath(`/proyectos/${projectId}`)
   return {}
+}
+
+type RouteRow = { id: string; rama: string; pais: string | null }
+
+/**
+ * Elige la mejor ruta del canal por prioridad: primero país + rama exactos,
+ * luego genéricas (pais null), luego cae a la rama estándar. País-aware: una
+ * cuenta chilena recibe la ruta chilena si existe.
+ */
+function pickRoute(routes: RouteRow[], rama: string, pais: string | null): string | null {
+  const prio: ((r: RouteRow) => boolean)[] = [
+    (r) => r.rama === rama && r.pais === pais,
+    (r) => r.rama === rama && r.pais === null,
+    (r) => r.rama === 'estandar' && r.pais === pais,
+    (r) => r.rama === 'estandar' && r.pais === null,
+    (r) => r.rama === rama,
+    (r) => r.rama === 'estandar',
+  ]
+  for (const pred of prio) {
+    const found = routes.find(pred)
+    if (found) return found.id
+  }
+  return null
 }

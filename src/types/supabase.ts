@@ -306,6 +306,7 @@ export type Database = {
           created_at: string
           id: string
           nombre: string
+          pais: string | null
           rama: Database["public"]["Enums"]["rama"]
         }
         Insert: {
@@ -314,6 +315,7 @@ export type Database = {
           created_at?: string
           id?: string
           nombre: string
+          pais?: string | null
           rama: Database["public"]["Enums"]["rama"]
         }
         Update: {
@@ -322,6 +324,7 @@ export type Database = {
           created_at?: string
           id?: string
           nombre?: string
+          pais?: string | null
           rama?: Database["public"]["Enums"]["rama"]
         }
         Relationships: []

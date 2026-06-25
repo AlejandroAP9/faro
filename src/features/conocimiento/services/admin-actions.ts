@@ -127,6 +127,7 @@ const routeSchema = z.object({
   rama: z.enum(['estandar', 'rehabilitacion', 'verif_alternativa', 'por_bsp']),
   canal: z.enum(['whatsapp', 'instagram']),
   bsp: z.string().trim().max(80).optional().or(z.literal('')),
+  pais: z.string().trim().max(80).optional().or(z.literal('')),
 })
 
 export async function listRoutes(): Promise<Route[]> {
@@ -161,13 +162,14 @@ export async function createRoute(formData: FormData): Promise<ActionResult<{ id
     rama: formData.get('rama'),
     canal: formData.get('canal'),
     bsp: formData.get('bsp'),
+    pais: formData.get('pais'),
   })
   if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? 'Datos inválidos' }
   const v = parsed.data
   const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('routes')
-    .insert({ nombre: v.nombre, rama: v.rama, canal: v.canal, bsp: v.bsp || null })
+    .insert({ nombre: v.nombre, rama: v.rama, canal: v.canal, bsp: v.bsp || null, pais: v.pais || null })
     .select('id')
     .single()
   if (error) return { error: error.message }

@@ -50,9 +50,15 @@ export function RouteForm() {
           </select>
         </div>
       </div>
-      <div>
-        <label htmlFor="bsp" className={labelC}>BSP (solo si la rama es por BSP)</label>
-        <input id="bsp" name="bsp" placeholder="Ej. YCloud" className={input} />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="pais" className={labelC}>País (vacío = aplica a todos)</label>
+          <input id="pais" name="pais" placeholder="Ej. Chile" className={input} />
+        </div>
+        <div>
+          <label htmlFor="bsp" className={labelC}>BSP (solo si la rama es por BSP)</label>
+          <input id="bsp" name="bsp" placeholder="Ej. YCloud" className={input} />
+        </div>
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}

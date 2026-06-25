@@ -88,3 +88,106 @@ values
    'Demuestra que los mensajes son solicitados y que hay opt-in. Aporta evidencia del calentamiento gradual.',
    'Se revisa en ~24h. Bajar el volumen a cero mientras tanto.',
    'Si la calidad cae a roja de forma reincidente, migrar a un número nuevo y rehacer el calentamiento.');
+
+-- ============================================================================
+-- RUTA ESTRELLA: Verificación de negocio sin registro formal (Chile)
+-- Documentada de un caso real, paso por paso. Es la rama verif_alternativa
+-- país=Chile que el diagnóstico asigna a un negocio sin documentación formal.
+-- ============================================================================
+with ins_steps as (
+  insert into public.knowledge_steps
+    (slug, titulo, instruccion, nombre_actual_boton, trampa, comportamiento_a_evitar, canal, estado_editorial)
+  values
+    ('wa-verif-iniciar',
+     'Iniciar la verificación del negocio',
+     'En business.facebook.com → Centro de seguridad → Verificación del negocio → Iniciar. Sirve para subir los límites de mensajería, no para arrancar (el número se asocia sin verificar).',
+     'Centro de seguridad → Verificación del negocio',
+     'La verificación NO bloquea operar: ya puedes usar el número sin ella. No la inicies si no tienes cómo respaldar nombre + dirección/teléfono con documentos.',
+     'No inicies múltiples solicitudes: cada rechazo endurece el siguiente.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-tipo-negocio',
+     'Elegir el tipo de negocio: Sociedad unipersonal (DBA)',
+     'En "Selecciona tu tipo de negocio", elige "Sociedad unipersonal" (un solo propietario que opera bajo un nombre comercial / DBA).',
+     'Selecciona tu tipo de negocio → Sociedad unipersonal',
+     'NO elijas "Institución" aunque seas edtech/educación: esa categoría exige registro institucional formal que no tienes.',
+     'No declares un tipo de empresa (sociedad, LLC) que no puedas documentar.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-registrado',
+     'Está registrado oficialmente -> "Aún no registrado"',
+     'Si tu negocio no tiene constitución legal formal, elige "Aún no registrado (una persona lo representa)". Te lleva a verificación por persona representante.',
+     'Tu negocio esta registrado oficialmente -> Aun no registrado',
+     'NO elijas "Registrado" sin documentos gubernamentales de registro: te exige papeles que no tienes y es callejón sin salida.',
+     'No mientas diciendo "Registrado": el siguiente paso pide el documento de registro.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-nombre-legal',
+     'Nombre legal = TU nombre, marca = nombre comercial (LA CLAVE)',
+     'En "Nombre del negocio" pon TU NOMBRE LEGAL (persona natural). En "Nombre del negocio alternativo" pon la marca/nombre comercial.',
+     'Nombre del negocio (legal) + Nombre alternativo (comercial)',
+     'EL ERROR #1: poner la marca como nombre legal. Eso hace que Meta exija documentos CON la marca (que no existen sin constituir empresa). Con el nombre legal = tu nombre, tus documentos personales (registro tributario, boletas) sí califican.',
+     'No pongas la marca/nombre de fantasía en el campo de nombre legal.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-direccion',
+     'Ingresar la dirección (calle + código postal + comuna)',
+     'El formulario pide calle + código postal + comuna, sin número de calle. Usa una dirección real que puedas respaldar con un documento.',
+     'Información del negocio → Dirección',
+     'Como no pide número, la dirección se cruza a nivel calle/comuna/código postal: basta con que esos calcen con tu documento. No te preocupes si el número exacto no está en el formulario.',
+     'No inventes una dirección que no puedas respaldar con un documento.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-telefono-url',
+     'Teléfono (el mismo de Meta) + URL del sitio activo',
+     'Usa el MISMO teléfono que registraste en Meta, y la URL de tu sitio web (debe estar activo y cargar).',
+     'Información del negocio → Teléfono y sitio web',
+     'En la ruta sin registro formal, tu presencia online (dominio + web) sustituye al registro. Un sitio caído resta. Usa el mismo teléfono en todo (Meta, WhatsApp, documentos).',
+     'No uses un teléfono o URL que no puedas verificar después.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-confirmacion-correo',
+     'Elegir confirmación por correo del dominio (@tudominio)',
+     'Como método de confirmación de conexión, elige "Correo electrónico @tudominio". Es lo más fuerte: prueba que controlas el dominio del negocio.',
+     'Elige cómo confirmar tu conexión → Correo electrónico',
+     'Si no tienes buzón en el dominio, usa "Verificación del dominio" (DNS). Las opciones de teléfono/SMS/WhatsApp también sirven, pero el correo del dominio es el más sólido.',
+     null,
+     'whatsapp', 'aprobado'),
+    ('wa-verif-doc-nombre',
+     'Documento 1 (nombre): registro tributario a tu nombre',
+     'Sube un documento oficial con tu nombre legal. En Chile: Certificado de Inicio de Actividades o Situación Tributaria del SII. Tipo: "Registro o licencia del negocio".',
+     'Subir documentos → Verifica el nombre legal',
+     'Verifica si YA tienes Inicio de Actividades (de trabajos previos con boletas de honorarios): muchos lo tienen sin recordarlo y NO necesitan constituir empresa. Si el documento muestra una dirección vieja, responde "No" a si incluye la dirección y úsalo solo para el nombre.',
+     'NO subas comprobantes de transacción (pagos, settlement, boletas de venta a clientes): no llevan tu nombre legal como titular y se rechazan.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-doc-direccion',
+     'Documento 2 (dirección/teléfono): factura de servicios con el número de Meta',
+     'Sube una factura de servicios públicos (cuenta de teléfono/internet) con tu nombre + el MISMO número registrado en Meta. Tipo: "Factura de servicios públicos".',
+     'Subir documentos → Verificar dirección o teléfono',
+     'El requisito es "teléfono O dirección": si tu factura tiene el número EXACTO de Meta, calza por teléfono aunque el número de la calle difiera. Elige la boleta que contenga ese número.',
+     'No uses boletas de proveedores (registro de dominio/hosting): muestran la dirección del VENDEDOR, no la tuya.',
+     'whatsapp', 'aprobado'),
+    ('wa-verif-confirmar-codigo',
+     'Confirmar el correo del dominio con el código',
+     'Meta envía un código de confirmación a tu correo @dominio (válido 60 minutos). Ingrésalo para enviar la solicitud.',
+     'Confirmar dirección de correo electrónico',
+     'Revisa también spam. Si el código expira, pide uno nuevo.',
+     null,
+     'whatsapp', 'aprobado'),
+    ('wa-verif-enviado',
+     'Solicitud enviada → revisión ~2 días laborables',
+     'La revisión de Meta tarda aproximadamente 2 días laborables. Te avisan el resultado por el estado de la verificación y por correo.',
+     'Información enviada',
+     'No reenvíes ni inicies otra solicitud mientras esperas: se interpreta como reintento y endurece el criterio. Mientras tanto, ya puedes operar el número.',
+     'No abras una segunda solicitud en paralelo.',
+     'whatsapp', 'aprobado')
+  returning id, slug
+),
+ins_route as (
+  insert into public.routes (nombre, rama, canal, pais)
+  values ('WhatsApp · verificación de negocio sin registro formal · Chile', 'verif_alternativa', 'whatsapp', 'Chile')
+  returning id
+)
+insert into public.route_steps (route_id, step_id, orden)
+select (select id from ins_route), s.id, x.orden
+from ins_steps s
+join (values
+  ('wa-verif-iniciar', 1), ('wa-verif-tipo-negocio', 2), ('wa-verif-registrado', 3),
+  ('wa-verif-nombre-legal', 4), ('wa-verif-direccion', 5), ('wa-verif-telefono-url', 6),
+  ('wa-verif-confirmacion-correo', 7), ('wa-verif-doc-nombre', 8), ('wa-verif-doc-direccion', 9),
+  ('wa-verif-confirmar-codigo', 10), ('wa-verif-enviado', 11)
+) as x(slug, orden) on x.slug = s.slug;

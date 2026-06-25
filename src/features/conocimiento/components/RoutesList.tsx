@@ -36,6 +36,7 @@ export function RoutesList({ routes }: { routes: Route[] }) {
             <div className="truncate text-sm font-medium text-gray-900 hover:text-blue-600">{r.nombre}</div>
             <div className="text-xs text-gray-400">
               {RAMA_LABELS[r.rama]} · {r.canal === 'whatsapp' ? 'WhatsApp' : 'Instagram'}
+              {r.pais ? ` · ${r.pais}` : ''}
               {r.bsp ? ` · ${r.bsp}` : ''}
             </div>
           </Link>
